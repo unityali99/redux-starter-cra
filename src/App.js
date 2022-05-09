@@ -1,14 +1,14 @@
 import Bugs from "./components/Bugs";
-import StoreContext from "./contexts/storeContext";
 import configureAddStore from "./store/configureAddStore";
+import { Provider } from "react-redux";
 
 function App() {
   const store = configureAddStore();
   return (
     <div className="App">
-      <StoreContext.Provider value={store}>
+      <Provider store={store}>
         <Bugs />
-      </StoreContext.Provider>
+      </Provider>
     </div>
   );
 }

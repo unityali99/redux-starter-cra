@@ -147,9 +147,6 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-//temp
-export const actions = slice.actions;
-
 export const getUnresolvedBugs = createSelector(
   (state) => state.entities.bugs,
   (bugs) => bugs.list.filter((bug) => bug.resolved === false)
