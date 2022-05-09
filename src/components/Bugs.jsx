@@ -3,11 +3,28 @@ import StoreContext from "../contexts/storeContext";
 
 class componentName extends Component {
   static contextType = StoreContext;
+
+  state = { bugs: [] };
   componentDidMount() {
-    console.log(this.context);
+    const store = this.context;
+
+    this.unSubscribe = store.subscribe(() => {
+      const bugInStore = store.getState().entities.bugs.list;
+      if (bugInStore !== this.state) this.setState({ bugs: bugInStore });
+    });
+  }
+
+  componentWillUnmount() {
+    this.unSubscribe();
   }
   render() {
-    return <div>{"Bugs"}</div>;
+    return (
+      <ul>
+        {this.state.bugs.map((bug) => (
+          <li key={bug.id}>bug.description</li>
+        ))}
+      </ul>
+    );
   }
 }
 
