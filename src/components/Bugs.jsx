@@ -21,6 +21,8 @@ class Bugs extends Component {
   // }
   //#endregion
 
+  //Old but gold (Class Component)
+
   componentDidMount() {
     this.props.loadBugs();
   }
