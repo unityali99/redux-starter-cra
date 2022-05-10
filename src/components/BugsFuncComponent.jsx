@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadBugs } from "../store/bugs";
+import { loadBugs, resolveBug } from "../store/bugs";
 
 // New way (Functional Component)
 
@@ -16,7 +16,14 @@ const BugsFuncComponent = () => {
   return (
     <ul>
       {bugs.map((bug) => (
-        <li key={bug.id}>{bug.description}</li>
+        <li key={bug.id} style={{ padding: "1rem 0" }}>
+          {bug.description} {"==>"} {`${bug.resolved}`}{" "}
+          <span>
+            <button onClick={() => dispatch(resolveBug(bug.id))}>
+              {"Resolved"}
+            </button>
+          </span>
+        </li>
       ))}
     </ul>
   );
