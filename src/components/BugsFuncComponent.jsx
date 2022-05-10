@@ -7,6 +7,7 @@ import { loadBugs } from "../store/bugs";
 const BugsFuncComponent = () => {
   const dispatch = useDispatch();
   const bugs = useSelector((state) => state.entities.bugs.list);
+  //or ==> useSelector(getUnresolvedBugs);
 
   useEffect(() => {
     dispatch(loadBugs());
