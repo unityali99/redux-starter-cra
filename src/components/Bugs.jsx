@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loadBugs } from "../store/bugs";
+import { loadBugs, resolveBug } from "../store/bugs";
 
 class Bugs extends Component {
   //#region
@@ -27,11 +27,25 @@ class Bugs extends Component {
     this.props.loadBugs();
   }
 
+  componentDidUpdate() {
+    this.props.loadBugs();
+  }
+
   render() {
+    // function resolveBug(id) {
+    //   this.props.resolveBug(id);
+    // }
     return (
       <ul>
         {this.props.bugs.map((bug) => (
-          <li key={bug.id}>{bug.description}</li>
+          <li key={bug.id} style={{ padding: "1rem 0" }}>
+            {bug.description} {"==>"} {`${bug.resolved}`}{" "}
+            <span>
+              <button onClick={() => this.props.resolveBug(bug.id)}>
+                {"Resolve"}
+              </button>
+            </span>
+          </li>
         ))}
       </ul>
     );
@@ -44,6 +58,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadBugs: () => dispatch(loadBugs()),
+  resolveBug: (id) => dispatch(resolveBug(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bugs);
