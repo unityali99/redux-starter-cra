@@ -11,7 +11,7 @@ const BugsFuncComponent = () => {
 
   useEffect(() => {
     dispatch(loadBugs());
-  }, []);
+  }, [dispatch]);
 
   return (
     <ul>

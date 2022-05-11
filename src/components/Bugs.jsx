@@ -32,9 +32,6 @@ class Bugs extends Component {
   }
 
   render() {
-    // function resolveBug(id) {
-    //   this.props.resolveBug(id);
-    // }
     return (
       <ul>
         {this.props.bugs.map((bug) => (
